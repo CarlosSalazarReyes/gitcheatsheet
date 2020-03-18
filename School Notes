@@ -1,0 +1,32 @@
+git init - We start GIT in the folder where the project is
+
+git status - List a current repository status with list of modified or added files
+
+git rm - Delete a file from the repository
+
+git clone - We clone the github repository
+
+git add. - We add all the files for the commit
+
+git commit -m "Text identifying the commit" - We do the first commit
+
+git push - upload to repository
+
+git add * .txt - We add all files with the specified extension
+
+git commit -a -m "Text identifying the commit" - Add and Load the changes made to the HEAD
+
+git push --tags - Upload a tag
+
+git log - Show the commit logs
+
+git reset - Reset current HEAD to the specified state
+
+git checkout - Switch branches or restore working tree files
+
+git diff - Show changes between commits, commit and working tree, etc
+
+
+
+
+

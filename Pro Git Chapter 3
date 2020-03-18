@@ -1,0 +1,121 @@
+		//Git Branching//
+
+	//Branches in a Nutshell//
+
+//Creat a new branch with git branch
+$ git branch testing
+//Switching Branches with git checkout and testing
+$ git checkout testing
+//If you run git log --oneline --decorate --graph --all it will print out the history of your commits
+$ git log --oneline --decorate --graph --all
+* c2b9e (HEAD, master) Made other changes
+| * 87ab2 (testing) Made a change
+|/
+* f30ab Add feature #32 - ability to add new formats to the central interface
+* 34ac2 Fix bug #1328 - stack overflow under certain conditions
+* 98ca9 initial commit of my project
+
+	//Basic Branching and Merging//
+
+//You can run the git checkout command with the -b switch
+$ git checkout -b iss53
+Switched to a new branch "iss53"
+//This is shorthand for
+$ git branch iss53
+$ git checkout iss53
+//Doing so moves the iss53 branch forward, because you have it checked out
+$ vim index.html
+$ git commit -a -m 'Create new footer [issue 53]'
+//You can switch back to your master branch
+$ git checkout master
+Switched to branch 'master'
+//Create a hotfix branch on which to work until it’s completed
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+$ vim index.html
+$ git commit -a -m 'Fix broken email address'
+[hotfix 1fb7853] Fix broken email address
+ 1 file changed, 2 insertions(+)
+
+	//Branch Management//
+
+//git branch if you run it with no arguments, you get a simple listing of your current branches
+$ git branch
+  iss53
+* master
+  testing
+//With git branch -v ,you can see the last commit on each branch
+$ git branch -v
+  iss53   93b412c Fix javascript issue
+* master  7a98805 Merge branch 'iss53'
+  testing 782fd34 Add scott to the author list in the readme
+//With branch --merged you can see which branches are already merged into the branch you’re on
+$ git branch --merged
+  iss53
+* master
+//Whit git branch --no-merged you can see all the branches that contain work you haven’t yet merged in
+$ git branch --no-merged
+  testing
+
+	//Remote Branches//
+
+//If you have a branch named serverfix, you can push it up the same way your first branch with git push
+$ git push origin serverfix
+Counting objects: 24, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (24/24), 1.91 KiB | 0 bytes/s, done.
+Total 24 (delta 2), reused 0 (delta 0)
+To https://github.com/schacon/simplegit
+ * [new branch]      serverfix -> serverfix
+//You can run git merge origin/serverfix, if you want your own serverfix branch
+$ git checkout -b serverfix origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+//You can set up other tracking branches if you wish ones that track branches on other remotes, or don’t track the master branch
+$ git checkout --track origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+//List out your local branches with more information including what each branch is tracking with git branch -vv
+
+$ git branch -vv
+  iss53     7e424c3 [origin/iss53: ahead 2] Add forgotten brackets
+  master    1ae2a45 [origin/master] Deploy index fix
+* serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] This should do it
+  testing   5ea463a Try something new
+//You can delete a remote branch using the --delete option to git push
+$ git push origin --delete serverfix
+To https://github.com/schacon/simplegit
+ - [deleted]         serverfix
+
+	//Rebasing//
+
+//you would check out the experiment branch, and then rebase it onto the master branch
+$ git checkout experiment
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: added staged command
+//You can go back to the master branch and do a fast-forward merge
+$ git checkout master
+$ git merge experiment
+//You can rebase the server branch onto the master branch 
+$ git rebase master server
+//You can fast-forward the base branch
+$ git checkout master
+$ git merge server
+//You can remove the client and server branches because all the work is integrated and you don’t need them anymore
+$ git branch -d client
+$ git branch -d server
+
+
+
+
+
+
+
+
+
+
+
+
+
