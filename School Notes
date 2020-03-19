@@ -25,8 +25,3 @@ git reset - Reset current HEAD to the specified state
 git checkout - Switch branches or restore working tree files
 
 git diff - Show changes between commits, commit and working tree, etc
-
-
-
-
-
