@@ -106,15 +106,3 @@ $ git merge server
 //You can remove the client and server branches because all the work is integrated and you don’t need them anymore
 $ git branch -d client
 $ git branch -d server
-
-
-
-
-
-
-
-
-
-
-
-
